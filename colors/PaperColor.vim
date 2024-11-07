@@ -1751,7 +1751,7 @@ fun! s:apply_syntax_highlightings()
   " Haskell Highlighting
   if s:langOpt_haskell__no_bold_types == 1
     exec 'hi haskellType' . s:fg_aqua
-  else 
+  else
     exec 'hi haskellType' . s:fg_aqua . s:ft_bold
   endif
   exec 'hi haskellIdentifier' . s:fg_orange . s:ft_bold
@@ -2347,6 +2347,12 @@ command! -nargs=0 PaperColor :call g:PaperColor()
 hi clear
 syntax reset
 let g:colors_name = "PaperColor"
+
+if has("nvim-0.10")
+  " new default nvim colorscheme https://github.com/neovim/neovim/blob/master/src/nvim/highlight_group.c
+  hi Normal guibg=none
+  hi StatusLine gui=bold,reverse
+endif
 
 call s:acquire_theme_data()
 call s:identify_color_mode()
